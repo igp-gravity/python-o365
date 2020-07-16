@@ -22,7 +22,7 @@ log = logging.getLogger(__name__)
 
 O365_API_VERSION = 'v2.0'
 GRAPH_API_VERSION = 'v1.0'
-OAUTH_REDIRECT_URL = 'https://login.microsoftonline.com/common/oauth2/nativeclient'  # version <= 1.1.3.  : 'https://outlook.office365.com/owa/'
+OAUTH_REDIRECT_URL = 'https://login.partner.microsoftonline.cn/common/oauth2/nativeclient'  # version <= 1.1.3.  : 'https://outlook.office365.com/owa/'
 
 RETRIES_STATUS_LIST = (
     429,  # Status code for TooManyRequests
@@ -191,17 +191,17 @@ class MSGraphProtocol(Protocol):
     https://docs.microsoft.com/en-us/outlook/rest/compare-graph-outlook
     """
 
-    _protocol_url = 'https://graph.microsoft.com/'
-    _oauth_scope_prefix = 'https://graph.microsoft.com/'
+    _protocol_url = 'https://microsoftgraph.chinacloudapi.cn/'
+    _oauth_scope_prefix = 'https://microsoftgraph.chinacloudapi.cn/'
     _oauth_scopes = DEFAULT_SCOPES
 
     def __init__(self, api_version='v1.0', default_resource=None,
                  **kwargs):
         """ Create a new Microsoft Graph protocol object
 
-        _protocol_url = 'https://graph.microsoft.com/'
+        _protocol_url = 'https://microsoftgraph.chinacloudapi.cn/'
 
-        _oauth_scope_prefix = 'https://graph.microsoft.com/'
+        _oauth_scope_prefix = 'https://microsoftgraph.chinacloudapi.cn/'
 
         :param str api_version: api version to use
         :param str default_resource: the default resource to use when there is
@@ -391,11 +391,11 @@ class Connection:
 
         self.naive_session = None  # lazy loaded: holds a requests Session object
 
-        self._oauth2_authorize_url = 'https://login.microsoftonline.com/' \
+        self._oauth2_authorize_url = 'https://login.partner.microsoftonline.cn/' \
                                      '{}/oauth2/v2.0/authorize'.format(tenant_id)
-        self._oauth2_token_url = 'https://login.microsoftonline.com/' \
+        self._oauth2_token_url = 'https://login.partner.microsoftonline.cn/' \
                                  '{}/oauth2/v2.0/token'.format(tenant_id)
-        self.oauth_redirect_url = 'https://login.microsoftonline.com/common/oauth2/nativeclient'
+        self.oauth_redirect_url = 'https://login.partner.microsoftonline.cn/common/oauth2/nativeclient'
 
     @property
     def auth_flow_type(self):
