@@ -5,6 +5,7 @@
 
 # O365 - Microsoft Graph and Office 365 API made easy
 
+# This project has been modified for Azure in China.
 
 > Detailed usage documentation is still in progress
 
